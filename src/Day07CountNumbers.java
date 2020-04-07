@@ -22,9 +22,10 @@ public class Day07CountNumbers implements Testable {
     	
     	return sum;
     }
-    
-    public boolean runTests() {
-    	
+
+	@Override
+	public Map<int[], Integer> getTestCases() {
+		
     	Map<int[], Integer> testCases = new HashMap<int[], Integer>();
     	testCases.put(new int[] {1,2,3}, 2);
     	testCases.put(new int[] {1,1,3,3,5,5,7,7}, 0);
@@ -32,20 +33,7 @@ public class Day07CountNumbers implements Testable {
     	testCases.put(new int[] {1,1,2,2}, 2);
     	testCases.put(new int[] {1,1,2}, 2);
     	
-    	boolean allPass = true;
-    	
-    	for (Map.Entry<int[], Integer> entry : testCases.entrySet()) {
-    		
-    		int result = countElements(entry.getKey());
-    		
-    		System.out.println("Testing input " + Arrays.toString(entry.getKey()) 
-    			+ ", expecting " + entry.getValue() + ": "
-    			+ (result == entry.getValue() ? "PASS" : "FAIL, got " + result));
-    		
-    		if (result != entry.getValue()) allPass = false;
-    	}
-    	
-    	return allPass;
-    }
+    	return testCases;
+	}
 	
 }
