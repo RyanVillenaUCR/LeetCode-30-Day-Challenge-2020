@@ -53,9 +53,10 @@ public class Day05BestTimeBuySellStockII implements Testable {
     		
     		int result = maxProfit(entry.getKey());
     		
-    		System.out.println("Testing input " + Arrays.toString(entry.getKey()) 
-    			+ ", expecting " + entry.getValue() + ": "
-    			+ (result == entry.getValue() ? "PASS" : "FAIL, got " + result));
+    		System.out.println(Tester.testResultString(
+    				Arrays.toString(entry.getKey()),		// input
+    				Integer.toString(entry.getValue()),		// expected output
+    				Integer.toString(result)));				// actual output
     		
     		if (result != entry.getValue()) allPass = false;
     	}

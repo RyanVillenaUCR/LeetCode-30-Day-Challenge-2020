@@ -3,6 +3,14 @@ import java.util.List;
 
 public class Tester {
 	
+	public static String testResultString(String input, String expectedOutput, String actualOutput) {
+		
+		return "Testing input " + input + ", expecting " + expectedOutput + ": "
+				+ (expectedOutput.equals(actualOutput) ?
+						"PASS" : 
+						"FAIL, got " + actualOutput);
+	}
+	
 	public static void runTests() {
 		
 		List<Testable> tests = new ArrayList<Testable>();
