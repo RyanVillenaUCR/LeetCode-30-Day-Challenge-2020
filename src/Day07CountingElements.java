@@ -23,6 +23,7 @@ public class Day07CountingElements implements Testable {
     	return sum;
     }
     
+    @Override
     public boolean runTests() {
     	
     	Map<int[], Integer> testCases = new HashMap<int[], Integer>();
