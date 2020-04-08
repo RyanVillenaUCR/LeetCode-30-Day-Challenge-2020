@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tester {
+
+    public static final Integer LOWEST_TEST = 1;
+    public static final Integer HIGHEST_TEST = 7;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -11,18 +14,88 @@ public class Tester {
 						"FAIL, got " + actualOutput);
 	}
 	
-	public static void runTests() {
+	private static List<Testable> chooseTests(String[] args) {
 		
 		List<Testable> tests = new ArrayList<Testable>();
 		
-		// Select problems to test here
-		tests.add(new Day01SingleNumber());
-		tests.add(new Day02HappyNumber());
-		tests.add(new Day03MaximumSubarray());
-		tests.add(new Day04MoveZeroes());
-		tests.add(new Day05BestTimeBuySellStockII());
-		tests.add(new Day06GroupAnagrams());
-		tests.add(new Day07CountNumbers());
+		for (String arg : args) {
+			
+			Integer testNumber = null;
+			
+			try {
+				
+				testNumber = Integer.parseInt(arg);
+				
+			} catch (NumberFormatException e) {
+
+                System.out.println("Input \"" + arg + "\" isn't an integer. Skipping that one.\n");
+				continue;
+			}
+			
+			if (testNumber != null
+				&& LOWEST_TEST <= testNumber
+				&& testNumber <= HIGHEST_TEST) {
+				
+				switch (testNumber) {
+				
+				case 1:
+					tests.add(new Day01SingleNumber());
+                    break;
+                case 2:
+                    tests.add(new Day02HappyNumber());
+                    break;
+                case 3:
+                    tests.add(new Day03MaximumSubarray());
+                    break;
+                case 4:
+                    tests.add(new Day04MoveZeroes());
+                    break;
+                case 5:
+                    tests.add(new Day05BestTimeBuySellStockII());
+                    break;
+                case 6:
+                    tests.add(new Day06GroupAnagrams());
+                    break;
+                case 7:
+                    tests.add(new Day07CountNumbers());
+                    break;
+                default:
+                    assert(LOWEST_TEST <= testNumber
+                        && testNumber <= HIGHEST_TEST)
+                        : "Did you forget to change LOWEST_TEST or HIGHEST_TEST, Ryan?";
+                    break;
+				}
+			} else {
+                System.out.println("Input " + arg
+                    + " is outside of the range ["
+                    + LOWEST_TEST + ", " + HIGHEST_TEST
+                    + "]. Skipping that one.\n");
+            }
+		}
+
+        return tests;
+	}
+	
+	public static void runTests(String[] args) {
+		
+		List<Testable> tests = new ArrayList<Testable>();
+		
+		// If no args given,
+		// test all
+		if (args == null || args.length == 0) {
+
+            List<String> strings = new ArrayList<String>();
+            for (int i = LOWEST_TEST; i <= HIGHEST_TEST; i++)
+                strings.add(Integer.toString(i));
+
+            tests.addAll(chooseTests(strings.toArray(new String[0])));
+		}
+		
+		// Else, just test those selected
+        else
+            tests.addAll(chooseTests(args));
+		
+
 		
 		for (Testable testMe : tests) {
 			
