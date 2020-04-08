@@ -16,6 +16,7 @@ public class Tester {
 		List<Testable> tests = new ArrayList<Testable>();
 		
 		// Select problems to test here
+		tests.add(new Day01SingleNumber());
 		tests.add(new Day02HappyNumber());
 		tests.add(new Day03MaximumSubarray());
 		tests.add(new Day04MoveZeroes());
