@@ -1,4 +1,4 @@
-# LeetCode-30-Day-Challenge-2020
+# LeetCode 30 Day Challenge 2020
 A collection of my submissions to the LeetCode 30 Day Challenge.
 
 ## Usage
