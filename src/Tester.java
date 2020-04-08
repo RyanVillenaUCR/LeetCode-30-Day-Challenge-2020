@@ -57,7 +57,7 @@ public class Tester {
                     tests.add(new Day06GroupAnagrams());
                     break;
                 case 7:
-                    tests.add(new Day07CountNumbers());
+                    tests.add(new Day07CountingElements());
                     break;
                 default:
                     assert(LOWEST_TEST <= testNumber

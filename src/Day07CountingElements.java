@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Day07CountNumbers implements Testable {
+public class Day07CountingElements implements Testable {
 
     public static int countElements(int[] arr) {
         
