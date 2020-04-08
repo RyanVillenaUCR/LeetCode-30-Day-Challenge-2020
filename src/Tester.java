@@ -4,7 +4,7 @@ import java.util.List;
 public class Tester {
 
     public static final Integer LOWEST_TEST = 1;
-    public static final Integer HIGHEST_TEST = 7;
+    public static final Integer HIGHEST_TEST = 8;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -59,6 +59,8 @@ public class Tester {
                 case 7:
                     tests.add(new Day07CountingElements());
                     break;
+                case 8:
+                	tests.add(new Day08MiddleOfTheLinkedList());
                 default:
                     assert(LOWEST_TEST <= testNumber
                         && testNumber <= HIGHEST_TEST)
