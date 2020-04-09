@@ -8,8 +8,6 @@ public class Day09BackspaceStringCompare implements Testable {
 		
 		currentPos--;
 		
-//		System.err.print("Using string " + str + ", moving pos " + currentPos);
-		
 		if (currentPos < 0) return currentPos;
 		
 		int backspaces = 0;
@@ -31,7 +29,6 @@ public class Day09BackspaceStringCompare implements Testable {
 		} while (currentPos >= 0 &&
 				(backspaces > 0 || str.charAt(currentPos) == '#'));
 		
-//		System.err.println(" to " + currentPos);
 		return currentPos;
 	}
 	
@@ -61,24 +58,12 @@ public class Day09BackspaceStringCompare implements Testable {
             // If they're equal, keep progressing the loop
             // Otherwise, return false immediately
             if ((sWalker >= 0 && tWalker >= 0)
-            		&& S.charAt(sWalker) != T.charAt(tWalker)) {
-            	
-//            	System.err.println("Just compared " +
-//            		"S[" + sWalker + "] \'" + S.charAt(sWalker) + "\' with " +
-//            		"T[" + tWalker + "] \'" + T.charAt(tWalker) + "\', returning false");
-            	
+            		&& S.charAt(sWalker) != T.charAt(tWalker))
             	return false;
-            }
             
+            // Edge case: return false if first char differs
             else if (sWalker >= 0 != tWalker >= 0)
-            	return false;
-            
-            // Just for debugging
-//            else if (sWalker >= 0 && tWalker >= 0)
-//            	System.err.println("Just compared " +
-//        			"S[" + sWalker + "] \'" + S.charAt(sWalker) + "\' with " +
-//        			"T[" + tWalker + "] \'" + T.charAt(tWalker) + "\', continuing loop");
-            	
+            	return false;            	
         }
         
         // If both have scanned through completely
