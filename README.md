@@ -22,3 +22,4 @@ To run just some tests, add them as arguments after `run.sh`. For example, let's
 * [Day 6: Group Anagrams](https://leetcode.com/problems/group-anagrams/)
 * [Day 7: Counting Elements] _Link not yet on LeetCode_
 * [Day 8: Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+* [Day 9: Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
