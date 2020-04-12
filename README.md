@@ -14,12 +14,15 @@ To run just some tests, add them as arguments after `run.sh`. For example, let's
 
 ## Problem Specs
 
-* [Day 1: Single Number](https://leetcode.com/problems/single-number/)
-* [Day 2: Happy Number](https://leetcode.com/problems/happy-number/)
-* [Day 3: Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
-* [Day 4: Move Zeroes](https://leetcode.com/problems/move-zeroes/)
-* [Day 5: Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
-* [Day 6: Group Anagrams](https://leetcode.com/problems/group-anagrams/)
-* [Day 7: Counting Elements] _Link not yet on LeetCode_
-* [Day 8: Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
-* [Day 9: Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
+* [Day 01: Single Number](https://leetcode.com/problems/single-number/)
+* [Day 02: Happy Number](https://leetcode.com/problems/happy-number/)
+* [Day 03: Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)
+* [Day 04: Move Zeroes](https://leetcode.com/problems/move-zeroes/)
+* [Day 05: Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
+* [Day 06: Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+* [Day 07: Counting Elements] _Link not yet on LeetCode_
+* [Day 08: Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
+* [Day 09: Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
+* [Day 10: Min Stack](https://leetcode.com/problems/min-stack/)
+* [Day 11: Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
+
