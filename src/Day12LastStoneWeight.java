@@ -6,19 +6,19 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class Day12LastStoneWeight implements Testable {
-
-	private class DescendingOrder implements Comparator<Integer> {
-
-		@Override
-		public int compare(Integer o1, Integer o2) {
-
-			return (int) Math.signum(o2 - o1);
-		}
-	}
 	
 	public int lastStoneWeight(int[] stones) {
 		
-		Queue<Integer> pq = new PriorityQueue<Integer>(new DescendingOrder());
+		Comparator<Integer> descending = new Comparator<Integer>() {
+			
+			@Override
+			public int compare(Integer o1, Integer o2) {
+
+				return o2.compareTo(o1);
+			}
+		};
+		
+		Queue<Integer> pq = new PriorityQueue<Integer>(descending);
 		for (int stone : stones)
 			pq.add(stone);
 		
@@ -63,5 +63,4 @@ public class Day12LastStoneWeight implements Testable {
 		
 		return allPass;
 	}
-
 }
