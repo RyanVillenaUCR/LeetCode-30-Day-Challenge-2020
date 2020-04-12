@@ -4,7 +4,7 @@ import java.util.List;
 public class Tester {
 
     public static final Integer LOWEST_TEST = 1;
-    public static final Integer HIGHEST_TEST = 9;
+    public static final Integer HIGHEST_TEST = 11;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -64,6 +64,12 @@ public class Tester {
                 	break;
                 case 9:
                 	tests.add(new Day09BackspaceStringCompare());
+                	break;
+                case 10:
+                	tests.add(new Day10MinStack());
+                	break;
+                case 11:
+                	tests.add(new Day11DiameterOfBinaryTree());
                 	break;
                 default:
                     assert(LOWEST_TEST <= testNumber
