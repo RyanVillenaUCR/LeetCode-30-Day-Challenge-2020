@@ -4,7 +4,7 @@ import java.util.List;
 public class Tester {
 
     public static final Integer LOWEST_TEST = 1;
-    public static final Integer HIGHEST_TEST = 13;
+    public static final Integer HIGHEST_TEST = 14;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -77,6 +77,8 @@ public class Tester {
                 case 13:
                 	tests.add(new Day13ContiguousArray());
                 	break;
+                case 14:
+                	tests.add(new Day14PerformStringShifts());
                 default:
                     assert(LOWEST_TEST <= testNumber
                         && testNumber <= HIGHEST_TEST)
