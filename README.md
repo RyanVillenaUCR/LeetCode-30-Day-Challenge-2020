@@ -25,4 +25,6 @@ To run just some tests, add them as arguments after `run.sh`. For example, let's
 * [Day 09: Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
 * [Day 10: Min Stack](https://leetcode.com/problems/min-stack/)
 * [Day 11: Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
+* [Day 12: stones?](https://leetcode.com/problems/last-stone-weight/)
+* [Day 13: Contiguous Array](https://leetcode.com/problems/contiguous-array/)
 
