@@ -5,36 +5,40 @@ public class Day16ValidParenthesisString implements Testable {
 
     public boolean checkValidString(String s) {
         
-        int extraLives = 0;
-        int leftParens = 0;
-        
+        // Possible interval of open left brackets
+        int lowerBound = 0, upperBound = 0;
         for (int i = 0; i < s.length(); i++) {
             
             char c = s.charAt(i);
             
-            switch (c) {
-                    
-                case '(':
-                    leftParens++;
-                    break;
-                case ')':
-                    if (leftParens > 0)
-                        leftParens--;
-                    else if (extraLives > 0)
-                        extraLives--;
-                    else return false;
-                    break;
-                case '*':
-                    if (leftParens > 0) {
-                        leftParens--;
-                        extraLives--;
-                    }
-                    else extraLives++;
-                    break;
-            }
+            // Maintain lower bound
+            //
+            // If we see a (, lowerBound should increase,
+            // as there's a larger interval of possibly open left brackets
+            // Otherwise, if we see a ),
+            // lowerBound should decrease (widen) since there's a
+            // greater interval of possibly open left brackets,
+            // but it cannot be less than 0
+            lowerBound = Math.max(0,
+                    lowerBound + (c == '(' ? 1 : -1));
+            
+            // Maintain upper bound
+            //
+            // If we see a ) or a *, upperBound should decrease,
+            // as a left parenthesis may have been canceled out by it
+            // Otherwise, if we see a (,
+            // upperBound should obviously increase
+            upperBound += c == '(' ? -1 : 1;
+            
+            // A negative upperBound means our string started with
+            // too many )'s, and is irredeemable
+            if (upperBound < 0) return false;
+            
         }
         
-        return leftParens == 0;
+        // At end of string processing,
+        // it must be possible to have 0 open left parentheses
+        return lowerBound == 0;
     }
     
     @Override
