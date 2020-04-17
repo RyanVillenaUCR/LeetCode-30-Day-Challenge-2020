@@ -20,11 +20,13 @@ To run just some tests, add them as arguments after `run.sh`. For example, let's
 * [Day 04: Move Zeroes](https://leetcode.com/problems/move-zeroes/)
 * [Day 05: Best Time to Buy and Sell Stock II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
 * [Day 06: Group Anagrams](https://leetcode.com/problems/group-anagrams/)
-* [Day 07: Counting Elements] _Link not yet on LeetCode_
+* Day 07: Counting Elements _Link not found on LeetCode_
 * [Day 08: Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/)
 * [Day 09: Backspace String Compare](https://leetcode.com/problems/backspace-string-compare/)
 * [Day 10: Min Stack](https://leetcode.com/problems/min-stack/)
 * [Day 11: Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)
-* [Day 12: stones?](https://leetcode.com/problems/last-stone-weight/)
+* [Day 12: Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)
 * [Day 13: Contiguous Array](https://leetcode.com/problems/contiguous-array/)
-
+* Day 14: Perform String Shifts _Link not found on LeetCode_
+* [Day 15: Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
+* [Day 16: Valid Parenthesis String](https://leetcode.com/problems/valid-parenthesis-string/)
