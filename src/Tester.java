@@ -4,7 +4,7 @@ import java.util.List;
 public class Tester {
 
     public static final Integer LOWEST_TEST = 1;
-    public static final Integer HIGHEST_TEST = 16;
+    public static final Integer HIGHEST_TEST = 17;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -85,6 +85,9 @@ public class Tester {
                 	break;
                 case 16:
                     tests.add(new Day16ValidParenthesisString());
+                    break;
+                case 17:
+                    tests.add(new Day17NumberOfIslands());
                     break;
                 default:
                     assert(LOWEST_TEST <= testNumber
