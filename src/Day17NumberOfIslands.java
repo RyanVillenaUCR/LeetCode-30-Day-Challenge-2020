@@ -27,9 +27,6 @@ public class Day17NumberOfIslands implements Testable {
         
         Set<int[]> moves = new HashSet<int[]>();
         
-//        System.out.println("getPossibleMoves called with row " + Integer.toString(row)
-//            + " and col " + Integer.toString(col));
-        
         // Try adding north tile
         if (row != 0                        // Don't add if out of bounds
             && grid[row - 1][col] != '0'    // Don't add if it's not land
@@ -53,10 +50,6 @@ public class Day17NumberOfIslands implements Testable {
             && grid[row][col + 1] != '0'
             && !history[row][col + 1])
             moves.add(new int[] { row, col + 1 });
-        
-//      System.out.println("getPossibleMoves called with row " + Integer.toString(row)
-//          + " and col " + Integer.toString(col) + ",\n"
-//          + "  returning " + setOfIntArrsToString(moves) + "\n");
         return moves;
     }
     
@@ -116,8 +109,6 @@ public class Day17NumberOfIslands implements Testable {
                 islands += fillHistory(grid, checked, col, row) ? 1 : 0;
             }
         }
-        
-//        System.out.println("History: \n" + bool2DArrToString(checked));
         
         return islands;
     }
@@ -204,6 +195,28 @@ public class Day17NumberOfIslands implements Testable {
         testCases.put(new char[][]
             {}
         , 0);
+        testCases.put(new char[][] {
+            new char[] {'1','1','1','1','1','0','1','1','1','1','1','1','1','1','1','0','1','0','1','1'},
+            new char[] {'0','1','1','1','1','1','1','1','1','1','1','1','1','0','1','1','1','1','1','0'},
+            new char[] {'1','0','1','1','1','0','0','1','1','0','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','1','1','1','0','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','0','0','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','0','1','1','1','1','1','1','0','1','1','1','0','1','1','1','0','1','1','1'},
+            new char[] {'0','1','1','1','1','1','1','1','1','1','1','1','0','1','1','0','1','1','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','0','1','1','1','1','0','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','0','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'0','1','1','1','1','1','1','1','0','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','1','1','1','1','0','1','1','1','1','1','1','1','0','1','1','1','1','1','1'},
+            new char[] {'1','0','1','1','1','1','1','0','1','1','1','0','1','1','1','1','0','1','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','0','1','1','1','1','1','1','0'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','0','1','1','1','1','0','0'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
+            new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'}          
+        }, 1);
         
         
         
@@ -212,8 +225,12 @@ public class Day17NumberOfIslands implements Testable {
         
         for (Map.Entry<char[][], Integer> entry : testCases.entrySet()) {
             
+            long start = System.currentTimeMillis();
+            
             char[][] inputGrid = entry.getKey();
             Integer result = numIslands(inputGrid);
+            
+            long timeTaken = System.currentTimeMillis() - start;
             
             if (result != entry.getValue()) allPass = false;
             
@@ -221,6 +238,8 @@ public class Day17NumberOfIslands implements Testable {
                     "\n" + char2DArrToString(inputGrid),    // input
                     Integer.toString(entry.getValue()),     // expected output
                     Integer.toString(result)));             // actual output
+            if (timeTaken > 1000)
+                System.out.println("This test took " + Long.toString(timeTaken) + "ms...");
         }
         
         return allPass;
