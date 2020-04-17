@@ -7,6 +7,9 @@ public class Day16ValidParenthesisString implements Testable {
         
         // Possible interval of open left brackets
         int lowerBound = 0, upperBound = 0;
+        
+        
+        
         for (int i = 0; i < s.length(); i++) {
             
             char c = s.charAt(i);
@@ -24,16 +27,18 @@ public class Day16ValidParenthesisString implements Testable {
             
             // Maintain upper bound
             //
-            // If we see a ) or a *, upperBound should decrease,
-            // as a left parenthesis may have been canceled out by it
-            // Otherwise, if we see a (,
-            // upperBound should obviously increase
-            upperBound += c == '(' ? -1 : 1;
+            // If we see a * or a (, upperBound should increase,
+            // since it's possible for there to be more unmatched left parens
+            // Otherwise, if we see a ),
+            // upperBound should decrease, as this ) would have
+            // matched up with a ( earlier in the string
+            // (The exception to this where a ) happens before a matching (
+            // is handled when upperBound < 0)
+            upperBound += (c == '*' || c == '(') ? 1 : -1;
             
             // A negative upperBound means our string started with
             // too many )'s, and is irredeemable
             if (upperBound < 0) return false;
-            
         }
         
         // At end of string processing,
