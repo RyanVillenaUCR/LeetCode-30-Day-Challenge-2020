@@ -50,6 +50,8 @@ public class Day16ValidParenthesisString implements Testable {
         testCases.put("()", true);
         testCases.put("*(", false);
         testCases.put(")*", false);
+        testCases.put("(()())", true);
+        testCases.put("((*)(*))", true);
         
         boolean allPass = true;
         
