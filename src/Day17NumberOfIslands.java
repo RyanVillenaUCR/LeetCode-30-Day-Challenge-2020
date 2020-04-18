@@ -1,9 +1,10 @@
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Arrays;
 
 public class Day17NumberOfIslands implements Testable {
@@ -20,36 +21,36 @@ public class Day17NumberOfIslands implements Testable {
         return empty;
     }
     
-    private Set<int[]> getPossibleMoves(char[][] grid, boolean[][] history, int row, int col) {
+    private Set<List<Integer>> getPossibleMoves(char[][] grid, boolean[][] history, int row, int col) {
         
         assert(0 <= col && col < history[0].length);
         assert(0 <= row && row < history.length);
         
-        Set<int[]> moves = new HashSet<int[]>();
+        Set<List<Integer>> moves = new HashSet< List<Integer>>();
         
         // Try adding north tile
         if (row != 0                        // Don't add if out of bounds
             && grid[row - 1][col] != '0'    // Don't add if it's not land
             && !history[row - 1][col])      // Don't add if we've already visited this tile
-            moves.add(new int[] { row - 1, col });
+            moves.add(Arrays.asList(new Integer[] { row - 1, col }));
         
         // Try adding south tile
         if (row != history.length - 1
             && grid[row + 1][col] != '0'
             && !history[row + 1][col])
-            moves.add(new int[] { row + 1, col });
+            moves.add(Arrays.asList(new Integer[] { row + 1, col }));
         
         // Try adding west tile
         if (col != 0
             && grid[row][col - 1] != '0'
             && !history[row][col - 1])
-            moves.add(new int[] { row, col - 1 });
+            moves.add(Arrays.asList(new Integer[] { row, col - 1 }));
         
         // Try adding east tile
         if (col != history[0].length - 1
             && grid[row][col + 1] != '0'
             && !history[row][col + 1])
-            moves.add(new int[] { row, col + 1 });
+            moves.add(Arrays.asList(new Integer[] { row, col + 1 }));
         
         return moves;
     }
@@ -79,28 +80,33 @@ public class Day17NumberOfIslands implements Testable {
             return false;
         
         // If you're here, you've hit unexplored land
-        int[] currentPos = new int[] { row, col };
-        Queue<int[]> frontier = new LinkedList<int[]>(); // Order that it's traversed doesn't matter
+        List<Integer> currentPos = Arrays.asList(new Integer[] { row, col });
+        Queue<List<Integer>> frontier = new PriorityQueue<List<Integer>>(); // Order that it's traversed doesn't matter
         frontier.add(currentPos);
         
         while (!frontier.isEmpty()) {
             
             // Remove the current position from the frontier
             currentPos = frontier.remove();
+            int currentRow = currentPos.get(0);
+            int currentCol = currentPos.get(1);
             
             // Take care of current element
-            history[currentPos[0]][currentPos[1]] = true;
+            history[currentPos.get(0)][currentPos.get(0)] = true;
             
             // Queue up next positions to explore
-            frontier.addAll(getPossibleMoves(grid, history, currentPos[0], currentPos[1]));
+            Set<List<Integer>> possibleMoves = getPossibleMoves(grid, history, currentRow, currentCol);
+            for (List<Integer> move : possibleMoves)
+                if (!frontier.contains(move))
+                    frontier.add(move);
             
             if (!frontier.isEmpty()) {
-                int[] nextPos = frontier.peek();
-                System.out.println("Just marked grid[" + Integer.toString(currentPos[0]) +
-                        "][" + Integer.toString(currentPos[1]) + "] as visited,");
-                System.out.println("about to go to grid[" + Integer.toString(nextPos[0]) +
-                        "][" + Integer.toString(nextPos[1]) + "].");
-                System.out.println("Frontier: " + queueOfIntArrsToString(frontier));
+                List<Integer> nextPos = frontier.peek();
+                System.out.println("Just marked grid[" + Integer.toString(currentRow) +
+                        "][" + Integer.toString(currentCol) + "] as visited,");
+                System.out.println("about to go to grid[" + Integer.toString(nextPos.get(0)) +
+                        "][" + Integer.toString(nextPos.get(1)) + "].");
+                System.out.println("Frontier: " + frontier);
                 System.out.println("History:\n" + bool2DArrToString(history) + "\n");
             }
         }
