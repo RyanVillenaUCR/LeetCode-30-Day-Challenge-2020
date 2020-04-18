@@ -1,10 +1,10 @@
 import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Arrays;
 
 public class Day17NumberOfIslands implements Testable {
@@ -21,36 +21,49 @@ public class Day17NumberOfIslands implements Testable {
         return empty;
     }
     
-    private Set<List<Integer>> getPossibleMoves(char[][] grid, boolean[][] history, int row, int col) {
+    private String pairToString(int a, int b) {
+        
+        return Integer.toString(a) + " " + Integer.toString(b);
+    }
+    
+    private int[] stringToPair(String s) {
+        
+        Scanner sc = new Scanner(s);
+        int[] pair = new int[] { sc.nextInt(), sc.nextInt() };
+        sc.close();
+        return pair;
+    }
+    
+    private Set<String> getPossibleMoves(char[][] grid, boolean[][] history, int row, int col) {
         
         assert(0 <= col && col < history[0].length);
         assert(0 <= row && row < history.length);
         
-        Set<List<Integer>> moves = new HashSet< List<Integer>>();
+        Set<String> moves = new HashSet<String>();
         
         // Try adding north tile
         if (row != 0                        // Don't add if out of bounds
             && grid[row - 1][col] != '0'    // Don't add if it's not land
             && !history[row - 1][col])      // Don't add if we've already visited this tile
-            moves.add(Arrays.asList(new Integer[] { row - 1, col }));
+            moves.add(pairToString(row - 1, col));
         
         // Try adding south tile
         if (row != history.length - 1
             && grid[row + 1][col] != '0'
             && !history[row + 1][col])
-            moves.add(Arrays.asList(new Integer[] { row + 1, col }));
+            moves.add(pairToString(row + 1, col));
         
         // Try adding west tile
         if (col != 0
             && grid[row][col - 1] != '0'
             && !history[row][col - 1])
-            moves.add(Arrays.asList(new Integer[] { row, col - 1 }));
+            moves.add(pairToString(row, col - 1));
         
         // Try adding east tile
         if (col != history[0].length - 1
             && grid[row][col + 1] != '0'
             && !history[row][col + 1])
-            moves.add(Arrays.asList(new Integer[] { row, col + 1 }));
+            moves.add(pairToString(row, col + 1));
         
         return moves;
     }
@@ -80,32 +93,34 @@ public class Day17NumberOfIslands implements Testable {
             return false;
         
         // If you're here, you've hit unexplored land
-        List<Integer> currentPos = Arrays.asList(new Integer[] { row, col });
-        Queue<List<Integer>> frontier = new PriorityQueue<List<Integer>>(); // Order that it's traversed doesn't matter
+        String currentPos = pairToString(row, col);
+        Queue<String> frontier = new PriorityQueue<String>(); // Order that it's traversed doesn't matter
         frontier.add(currentPos);
         
         while (!frontier.isEmpty()) {
             
             // Remove the current position from the frontier
             currentPos = frontier.remove();
-            int currentRow = currentPos.get(0);
-            int currentCol = currentPos.get(1);
+            int[] currentPosArr = stringToPair(currentPos);
+            int currentRow = currentPosArr[0];
+            int currentCol = currentPosArr[1];
             
             // Take care of current element
-            history[currentPos.get(0)][currentPos.get(0)] = true;
+            history[currentRow][currentCol] = true;
             
             // Queue up next positions to explore
-            Set<List<Integer>> possibleMoves = getPossibleMoves(grid, history, currentRow, currentCol);
-            for (List<Integer> move : possibleMoves)
+            Set<String> possibleMoves = getPossibleMoves(grid, history, currentRow, currentCol);
+            for (String move : possibleMoves)
                 if (!frontier.contains(move))
                     frontier.add(move);
             
             if (!frontier.isEmpty()) {
-                List<Integer> nextPos = frontier.peek();
+                String nextPos = frontier.peek();
+                int[] nextPosArr = stringToPair(nextPos);
                 System.out.println("Just marked grid[" + Integer.toString(currentRow) +
                         "][" + Integer.toString(currentCol) + "] as visited,");
-                System.out.println("about to go to grid[" + Integer.toString(nextPos.get(0)) +
-                        "][" + Integer.toString(nextPos.get(1)) + "].");
+                System.out.println("about to go to grid[" + Integer.toString(nextPosArr[0]) +
+                        "][" + Integer.toString(nextPosArr[1]) + "].");
                 System.out.println("Frontier: " + frontier);
                 System.out.println("History:\n" + bool2DArrToString(history) + "\n");
             }
@@ -149,15 +164,6 @@ public class Day17NumberOfIslands implements Testable {
         StringBuilder sb = new StringBuilder();
         for (boolean[] row : grid)
             sb.append(Arrays.toString(row) + "\n");
-        
-        return sb.toString();
-    }
-    
-    private String queueOfIntArrsToString(Queue<int[]> set) {
-        
-        StringBuilder sb = new StringBuilder(set.size());
-        for (int[] thisArr : set)
-            sb.append(Arrays.toString(thisArr));
         
         return sb.toString();
     }
