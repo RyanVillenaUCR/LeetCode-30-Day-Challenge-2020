@@ -98,8 +98,9 @@ public class Day17NumberOfIslands implements Testable {
                 int[] nextPos = frontier.peek();
                 System.out.println("Just marked grid[" + Integer.toString(currentPos[0]) +
                         "][" + Integer.toString(currentPos[1]) + "] as visited,");
-                System.out.println("about to go to grid[" + Integer.toString(nextPos[0])
-                        + "][" + Integer.toString(nextPos[1]) + "].");
+                System.out.println("about to go to grid[" + Integer.toString(nextPos[0]) +
+                        "][" + Integer.toString(nextPos[1]) + "].");
+                System.out.println("Frontier: " + queueOfIntArrsToString(frontier));
                 System.out.println("History:\n" + bool2DArrToString(history) + "\n");
             }
         }
@@ -146,7 +147,7 @@ public class Day17NumberOfIslands implements Testable {
         return sb.toString();
     }
     
-    private String setOfIntArrsToString(Set<int[]> set) {
+    private String queueOfIntArrsToString(Queue<int[]> set) {
         
         StringBuilder sb = new StringBuilder(set.size());
         for (int[] thisArr : set)
