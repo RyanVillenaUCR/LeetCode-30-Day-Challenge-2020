@@ -113,17 +113,6 @@ public class Day17NumberOfIslands implements Testable {
             for (String move : possibleMoves)
                 if (!frontier.contains(move))
                     frontier.add(move);
-            
-            if (!frontier.isEmpty()) {
-                String nextPos = frontier.peek();
-                int[] nextPosArr = stringToPair(nextPos);
-                System.out.println("Just marked grid[" + Integer.toString(currentRow) +
-                        "][" + Integer.toString(currentCol) + "] as visited,");
-                System.out.println("about to go to grid[" + Integer.toString(nextPosArr[0]) +
-                        "][" + Integer.toString(nextPosArr[1]) + "].");
-                System.out.println("Frontier: " + frontier);
-                System.out.println("History:\n" + bool2DArrToString(history) + "\n");
-            }
         }
         
         return true;
@@ -154,15 +143,6 @@ public class Day17NumberOfIslands implements Testable {
         
         StringBuilder sb = new StringBuilder();
         for (char[] row : grid)
-            sb.append(Arrays.toString(row) + "\n");
-        
-        return sb.toString();
-    }
-    
-    private String bool2DArrToString(boolean[][] grid) {
-        
-        StringBuilder sb = new StringBuilder();
-        for (boolean[] row : grid)
             sb.append(Arrays.toString(row) + "\n");
         
         return sb.toString();
@@ -249,12 +229,8 @@ public class Day17NumberOfIslands implements Testable {
         
         for (Map.Entry<char[][], Integer> entry : testCases.entrySet()) {
             
-            long start = System.currentTimeMillis();
-            
             char[][] inputGrid = entry.getKey();
             Integer result = numIslands(inputGrid);
-            
-            long timeTaken = System.currentTimeMillis() - start;
             
             if (result != entry.getValue()) allPass = false;
             
@@ -262,8 +238,6 @@ public class Day17NumberOfIslands implements Testable {
                     "\n" + char2DArrToString(inputGrid),    // input
                     Integer.toString(entry.getValue()),     // expected output
                     Integer.toString(result)));             // actual output
-            if (timeTaken > 1000)
-                System.out.println("This test took " + Long.toString(timeTaken) + "ms...");
         }
         
         return allPass;
