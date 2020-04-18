@@ -50,6 +50,7 @@ public class Day17NumberOfIslands implements Testable {
             && grid[row][col + 1] != '0'
             && !history[row][col + 1])
             moves.add(new int[] { row, col + 1 });
+        
         return moves;
     }
     
@@ -93,6 +94,14 @@ public class Day17NumberOfIslands implements Testable {
             // Queue up next positions to explore
             frontier.addAll(getPossibleMoves(grid, history, currentPos[0], currentPos[1]));
             
+            if (!frontier.isEmpty()) {
+                int[] nextPos = frontier.peek();
+                System.out.println("Just marked grid[" + Integer.toString(currentPos[0]) +
+                        "][" + Integer.toString(currentPos[1]) + "] as visited,");
+                System.out.println("about to go to grid[" + Integer.toString(nextPos[0])
+                        + "][" + Integer.toString(nextPos[1]) + "].");
+                System.out.println("History:\n" + bool2DArrToString(history) + "\n");
+            }
         }
         
         return true;
@@ -195,6 +204,7 @@ public class Day17NumberOfIslands implements Testable {
         testCases.put(new char[][]
             {}
         , 0);
+        /*
         testCases.put(new char[][] {
             new char[] {'1','1','1','1','1','0','1','1','1','1','1','1','1','1','1','0','1','0','1','1'},
             new char[] {'0','1','1','1','1','1','1','1','1','1','1','1','1','0','1','1','1','1','1','0'},
@@ -217,6 +227,7 @@ public class Day17NumberOfIslands implements Testable {
             new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'},
             new char[] {'1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1'}          
         }, 1);
+        */
         
         
         
