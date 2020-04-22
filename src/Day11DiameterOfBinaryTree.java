@@ -23,7 +23,7 @@ public class Day11DiameterOfBinaryTree implements Testable {
 	}
 	
 	// Implementation from LeetCode Playground
-	public static String treeNodeToString(TreeNode root) {
+	private static String treeNodeToString(TreeNode root) {
         if (root == null) {
             return "[]";
         }
@@ -47,7 +47,7 @@ public class Day11DiameterOfBinaryTree implements Testable {
     }
     
 	// Implementation from LeetCode Playground
-    public TreeNode stringToTreeNode(String input) {
+    private TreeNode stringToTreeNode(String input) {
         input = input.trim();
         input = input.substring(1, input.length() - 1);
         if (input.length() == 0) {
@@ -92,7 +92,7 @@ public class Day11DiameterOfBinaryTree implements Testable {
     }
     
     // Implementation from LeetCode Playground
-    public static String prettyPrintTree(TreeNode node, String prefix, boolean isLeft, StringBuilder sb) {
+    private static String prettyPrintTree(TreeNode node, String prefix, boolean isLeft, StringBuilder sb) {
         if (node == null) {
             return "Empty tree";
         }
@@ -111,7 +111,7 @@ public class Day11DiameterOfBinaryTree implements Testable {
     }
     
     // Implementation from LeetCode Playground
-    public static String prettyPrintTree(TreeNode node) {
+    private static String prettyPrintTree(TreeNode node) {
         return prettyPrintTree(node,  "", true, new StringBuilder());
     }
 	
