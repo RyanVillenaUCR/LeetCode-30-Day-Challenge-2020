@@ -4,7 +4,7 @@ import java.util.List;
 public class Tester {
 
     public static final Integer LOWEST_TEST  = 1;
-    public static final Integer HIGHEST_TEST = 20;
+    public static final Integer HIGHEST_TEST = 21;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -98,6 +98,8 @@ public class Tester {
                 case 20:
                     tests.add(new Day20ConstructBinarySearchTreefromPreorderTraversal());
                     break;
+                case 21:
+                    tests.add(new Day21LeftmostColumnWithAtLeastaOne());
                 default:
                     assert(LOWEST_TEST <= testNumber
                         && testNumber <= HIGHEST_TEST)
