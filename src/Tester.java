@@ -4,7 +4,7 @@ import java.util.List;
 public class Tester {
 
     public static final Integer LOWEST_TEST  = 1;
-    public static final Integer HIGHEST_TEST = 19;
+    public static final Integer HIGHEST_TEST = 20;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -94,6 +94,9 @@ public class Tester {
                     break;
                 case 19:
                     tests.add(new Day19SearchinRotatedSortedArray());
+                    break;
+                case 20:
+                    tests.add(new Day20ConstructBinarySearchTreefromPreorderTraversal());
                     break;
                 default:
                     assert(LOWEST_TEST <= testNumber
