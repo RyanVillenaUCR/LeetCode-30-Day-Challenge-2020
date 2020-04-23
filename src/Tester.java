@@ -4,7 +4,7 @@ import java.util.List;
 public class Tester {
 
     public static final Integer LOWEST_TEST  = 1;
-    public static final Integer HIGHEST_TEST = 21;
+    public static final Integer HIGHEST_TEST = 22;
 	
 	public static String testResultString(String input, String expectedOutput, String actualOutput) {
 		
@@ -100,6 +100,10 @@ public class Tester {
                     break;
                 case 21:
                     tests.add(new Day21LeftmostColumnWithAtLeastaOne());
+                    break;
+                case 22:
+                    tests.add(new Day22SubarraySumEqualsK());
+                    break;
                 default:
                     assert(LOWEST_TEST <= testNumber
                         && testNumber <= HIGHEST_TEST)
